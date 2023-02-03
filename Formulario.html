@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ExercicioVitor</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(128, 128, 128));
+        }
+
+        .box{
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background-color: rgb(255, 0, 0);
+        }
+    legend{
+        text-align:center;
+    }
+    .inputBox{
+        position: relative;
+    }
+    .inputUser{
+        background: none;
+        border: none;
+        border-bottom: 1px solid rgb(255, 255, 255);
+        outline: none;
+        color: white;
+        font-size: 15px;
+        width: 100%;
+        letter-spacing: 2px;
+    }
+    .LabelInput{
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        pointer-events: none;
+        transition: .5s;
+    }
+    .inputUser:focus ~ .LabelInput,
+    .inputUser:valid ~ .LabelInput{
+        top: -20px;
+        font-size: 12px;
+    }
+    #datalimite{
+        border: none;
+        padding: 8px;
+        border-radius: 10px;
+        outline: none;
+    }
+        #data {
+            border: none;
+            padding: 8px;
+            border-radius: 10px;
+            outline: none;
+        }
+        #submit{
+            background-color: rgb(0, 0, 0);
+            color:white;
+            width: 100%;
+            border: none;
+            padding: 15px;
+            font-size: 15px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        #hello {
+            background-color: rgb(0, 0, 0);
+            color: white;
+            width: 15%;
+            border: none;
+            padding: 15px;
+            font-size: 15px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <br />
+    <input type="submit" name="hello" id="hello" onclick="msg()"value="Clique Aqui" />
+    <script>
+            function msg() {
+                alert('HELLO WORLD');
+            }
+    </script>
+    <hr>
+    <div class="box" id="testetabela">
+        <form action="">
+            <fieldset>
+                <legend><b>Preenchimento de dados</b></legend>
+                <br />
+                <div class="inputBox" id="camponome">
+                    <input type="text" name="nome" id="nomeid" class="inputUser" required />
+                    <label for="nome" class="LabelInput">Nome completo</label>
+                </div>
+                <br />
+                <div class="inputBox">
+                    <input type="text" name="cpf" id="cpfid" class="inputUser" required />
+                    <label for="cpf"class="LabelInput">CPF</label>
+                </div>
+                <br />
+                <div class="inputBox">
+                    <input type="text" name="rg" id="rgid" class="inputUser" required />
+                    <label for="rg"class="LabelInput">RG</label>
+                </div>
+                <br />
+                <div class="inputBox">
+                    <input type="text" name="endereco" id="enderecoid" class="inputUser" required />
+                    <label for="endereco"class="LabelInput">Endereco completo</label>
+                </div>
+                <br />
+                <div class="inputBox">
+                    <input type="text" name="aplicador" id="aplicadorid" class="inputUser" required />
+                    <label for="aplicador"class="LabelInput">Aplicador</label>
+                </div>
+                <br />
+                <div class="inputBox">
+                    <input type="text" name="cidade" id="cidadeid" class="inputUser" required />
+                    <label for="cidade" class="LabelInput">Cidade</label>
+                </div>
+                <br />
+                    <label for="datalimite"><b>Data limite: </b></label>
+                    <input type="date" name="datalimite" id="datalimiteid" required />
+                <br /><br />
+                    <label for="data"><b>Data: </b></label>
+                    <input type="date" name="data" id="dataid"  required />
+                <br /><br />
+                <input type="submit" name="submit" id="submit" value="Gerar PDF" onclick="texto();"/>
+				
+                <script>
+				
+                        function texto() 
+						{
+						 var nome = document.getElementById("nomeid");
+						 var cpf = document.getElementById("cpfid");
+						 var rg = document.getElementById("rgid");
+						 var endereco = document.getElementById("enderecoid");
+						 var aplicador = document.getElementById("aplicadorid");
+						 var cidade = document.getElementById("cidadeid");
+						 var datalimite = document.getElementById("datalimiteid");
+						 var data = document.getElementById("dataid");
+						 
+						 var style = "<style>";
+						 style = style + "table {width: 100%;font: 20px Calibri;}";
+						 style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
+						 style = style + "padding: 2px 3px;text-align: center;}";
+						 style = style + "</style>";
+						 
+						 // CRIA UM OBJETO WINDOW
+						 var win = window.open('', '', 'height=700,width=700');
+						 win.document.write('DECLARAÇÃO DE REALIZAÇÃO DE TESTE<br></br>');
+						 win.document.write('Eu, ' +nome.value+ ', portador do CPF '+cpf.value+', RG '+rg.value+', residente em '+endereco.value+', concordo em entregar esse exercicio dentro do prazo proposto a mim por '+aplicador.value+', que encerra em '+datalimite.value+', sendo que este se propoe a realizar a correcao e analise dos meus resultados.Da mesma forma, declaro que todas as linhas deste codigo foram digitadas por mim e não por outra pessoa, conforme solicitado por '+aplicador.value+'.<br></br>'+cidade.value+'      '+data.value);
+						 win.document.write(style);                                     
+						 win.document.close(); 	                                         
+						 win.print();   
+						 
+						}
+                </script>
+</fieldset>
+        </form>    
+    </div>
+</body>
+</html>
